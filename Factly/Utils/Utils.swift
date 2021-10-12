@@ -42,9 +42,12 @@ class Utils {
 		
 		// if I have a fact -> add that in the alert!
 		var notificationAlertBody = Constants.Strings.NOTIFICATION
-		if UserDefaults.standard.string(forKey: Constants.Defaults.LATEST_FACT_QUESTION) != nil {
-			notificationAlertBody = UserDefaults.standard.string(forKey: Constants.Defaults.LATEST_FACT_QUESTION)!
-		}
+//		if UserDefaults.standard.string(forKey: Constants.Defaults.LATEST_FACT_QUESTION) != nil {
+//			notificationAlertBody = UserDefaults.standard.string(forKey: Constants.Defaults.LATEST_FACT_QUESTION)!
+//		}
+        if UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.Defaults.LATEST_FACT_QUESTION) != nil {
+            notificationAlertBody = UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.Defaults.LATEST_FACT_QUESTION)!
+        }
 		
 		// Schedule repeating notification
 		let notification = UILocalNotification()

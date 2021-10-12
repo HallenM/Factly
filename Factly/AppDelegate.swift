@@ -37,17 +37,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		formatter.dateFormat = "dd.MM.yyyy"
 		let todaysDate = formatter.string(from: date)
 	
-		if UserDefaults.standard.string(forKey: Constants.LocalNotifications.LAST_FACT_DATE) == nil {
+//		if UserDefaults.standard.string(forKey: Constants.LocalNotifications.LAST_FACT_DATE) == nil {
+        if UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.LocalNotifications.LAST_FACT_DATE) == nil {
 			AppDelegate.pullFact()
-			UserDefaults.standard.set(todaysDate, forKey: Constants.LocalNotifications.LAST_FACT_DATE)
+            print("empty UserDefaults")
+//			UserDefaults.standard.set(todaysDate, forKey: Constants.LocalNotifications.LAST_FACT_DATE)
+            UserDefaults(suiteName: "group.com.hirerussians.factly")!.set(todaysDate, forKey: Constants.LocalNotifications.LAST_FACT_DATE)
 		}
 		else {
-			let lastFactDate = UserDefaults.standard.string(forKey: Constants.LocalNotifications.LAST_FACT_DATE)
+//			let lastFactDate = UserDefaults.standard.string(forKey: Constants.LocalNotifications.LAST_FACT_DATE)
+            let lastFactDate = UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.LocalNotifications.LAST_FACT_DATE)
 			
 			// Check if 24 hours have passed since the last fact was pulled
 			if formatter.date(from: lastFactDate!)! < formatter.date(from: todaysDate)! {
+                print("lastFactDate: \(formatter.date(from: lastFactDate!)!) and todaysDate: \(formatter.date(from: todaysDate)!)")
+                print("there are some data in UserDefaults and lastFactDate < todaysDate")
 				AppDelegate.pullFact()
-				UserDefaults.standard.set(todaysDate, forKey: Constants.LocalNotifications.LAST_FACT_DATE)
+//				UserDefaults.standard.set(todaysDate, forKey: Constants.LocalNotifications.LAST_FACT_DATE)
+                UserDefaults(suiteName: "group.com.hirerussians.factly")!.set(todaysDate, forKey: Constants.LocalNotifications.LAST_FACT_DATE)
 			}
 		}
 	}
@@ -61,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	/* MARK: Core Functionality
 	/////////////////////////////////////////// */
 	class func pullFact() {
+//        SharedFunctions.shared.pullFact()
 		let url = "https://opentdb.com/api.php?amount=1&type=multiple"
 		Utils.getFact(url, callback: {(params: String, urlContents: String) -> Void in
 			if urlContents.characters.count > 5 {
@@ -76,8 +84,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 					question = question.removingPercentEncoding!
 					answer = answer.removingPercentEncoding!
 					
-					UserDefaults.standard.set(question, forKey: Constants.Defaults.LATEST_FACT_QUESTION)
-					UserDefaults.standard.set(answer, forKey: Constants.Defaults.LATEST_FACT_ANSWER)
+//					UserDefaults.standard.set(question, forKey: Constants.Defaults.LATEST_FACT_QUESTION)
+//					UserDefaults.standard.set(answer, forKey: Constants.Defaults.LATEST_FACT_ANSWER)
+                    UserDefaults(suiteName: "group.com.hirerussians.factly")!.set(question, forKey: Constants.Defaults.LATEST_FACT_QUESTION)
+                    UserDefaults(suiteName: "group.com.hirerussians.factly")!.set(answer, forKey: Constants.Defaults.LATEST_FACT_ANSWER)
 				})
 			}
 		})

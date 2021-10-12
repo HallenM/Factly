@@ -25,6 +25,13 @@
 		52C7035C214484F200AC839F /* CustomClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C7035B214484F200AC839F /* CustomClasses.swift */; };
 		62613F8042AD45311DE5688A /* Pods_Factly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A90674582B57AA2181E988B /* Pods_Factly.framework */; };
 		927FC3F1CD837EFBD58BAB06 /* Pods_Factly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D91BC6D52E3CFC23A0DEA4B4 /* Pods_Factly.framework */; };
+		F51FDAC2270EF69B00CC5818 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F51FDAC1270EF69B00CC5818 /* WidgetKit.framework */; };
+		F51FDAC4270EF69B00CC5818 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F51FDAC3270EF69B00CC5818 /* SwiftUI.framework */; };
+		F51FDAC7270EF69B00CC5818 /* FactlyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51FDAC6270EF69B00CC5818 /* FactlyWidget.swift */; };
+		F51FDAC9270EF69F00CC5818 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F51FDAC8270EF69F00CC5818 /* Assets.xcassets */; };
+		F51FDACD270EF69F00CC5818 /* FactlyWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F51FDAC0270EF69B00CC5818 /* FactlyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F561E4A1271427A20016D021 /* SharedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F561E4A0271427A20016D021 /* SharedFunctions.swift */; };
+		F561E4A2271427A20016D021 /* SharedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F561E4A0271427A20016D021 /* SharedFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +42,28 @@
 			remoteGlobalIDString = 5265BE641E339C580007CDCD;
 			remoteInfo = Factly;
 		};
+		F51FDACB270EF69F00CC5818 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5265BE5D1E339C570007CDCD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F51FDABF270EF69B00CC5818;
+			remoteInfo = FactlyWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F51FDACE270EF69F00CC5818 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F51FDACD270EF69F00CC5818 /* FactlyWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4A90674582B57AA2181E988B /* Pods_Factly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Factly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +90,16 @@
 		81CE0C0712941C3CBF54BD72 /* Pods-Factly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Factly.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Factly/Pods-Factly.debug.xcconfig"; sourceTree = "<group>"; };
 		B0AC00D0CAFEFF75CAB3F87B /* Pods-Factly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Factly.release.xcconfig"; path = "Pods/Target Support Files/Pods-Factly/Pods-Factly.release.xcconfig"; sourceTree = "<group>"; };
 		D91BC6D52E3CFC23A0DEA4B4 /* Pods_Factly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Factly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F51FDAC0270EF69B00CC5818 /* FactlyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FactlyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F51FDAC1270EF69B00CC5818 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		F51FDAC3270EF69B00CC5818 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		F51FDAC6270EF69B00CC5818 /* FactlyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactlyWidget.swift; sourceTree = "<group>"; };
+		F51FDAC8270EF69F00CC5818 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F51FDACA270EF69F00CC5818 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F561E4A0271427A20016D021 /* SharedFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFunctions.swift; sourceTree = "<group>"; };
+		F58EEEE327104B8F00E3B413 /* FactlyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FactlyWidgetExtension.entitlements; sourceTree = "<group>"; };
+		F58EEEE427104D4200E3B413 /* Factly.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Factly.entitlements; sourceTree = "<group>"; };
+		F58EEEE527104EB000E3B413 /* FactlyWidgetExtensionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FactlyWidgetExtensionDebug.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +119,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F51FDABD270EF69B00CC5818 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F51FDAC4270EF69B00CC5818 /* SwiftUI.framework in Frameworks */,
+				F51FDAC2270EF69B00CC5818 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -96,8 +143,11 @@
 		5265BE5C1E339C570007CDCD = {
 			isa = PBXGroup;
 			children = (
+				F58EEEE527104EB000E3B413 /* FactlyWidgetExtensionDebug.entitlements */,
+				F58EEEE327104B8F00E3B413 /* FactlyWidgetExtension.entitlements */,
 				5265BE671E339C580007CDCD /* Factly */,
 				527575A1212055D3001336B3 /* FactlyUITests */,
+				F51FDAC5270EF69B00CC5818 /* FactlyWidget */,
 				5265BE661E339C580007CDCD /* Products */,
 				765991B7DD42431E7427642B /* Pods */,
 				A9C7BC73C92CEA5D8642B3CE /* Frameworks */,
@@ -109,6 +159,7 @@
 			children = (
 				5265BE651E339C580007CDCD /* Factly.app */,
 				527575A0212055D3001336B3 /* FactlyUITests.xctest */,
+				F51FDAC0270EF69B00CC5818 /* FactlyWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,6 +167,7 @@
 		5265BE671E339C580007CDCD /* Factly */ = {
 			isa = PBXGroup;
 			children = (
+				F58EEEE427104D4200E3B413 /* Factly.entitlements */,
 				050AC55FAD8CA4810AB7F3CD /* Frameworks */,
 				5265BE7A1E33AD0B0007CDCD /* Resources */,
 				5265BE7B1E33AD150007CDCD /* Utils */,
@@ -145,6 +197,7 @@
 				52C7035B214484F200AC839F /* CustomClasses.swift */,
 				5265BE801E33AEA30007CDCD /* Extensions.swift */,
 				5265BE7C1E33AD210007CDCD /* Utils.swift */,
+				F561E4A0271427A20016D021 /* SharedFunctions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -183,8 +236,20 @@
 			isa = PBXGroup;
 			children = (
 				D91BC6D52E3CFC23A0DEA4B4 /* Pods_Factly.framework */,
+				F51FDAC1270EF69B00CC5818 /* WidgetKit.framework */,
+				F51FDAC3270EF69B00CC5818 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F51FDAC5270EF69B00CC5818 /* FactlyWidget */ = {
+			isa = PBXGroup;
+			children = (
+				F51FDAC6270EF69B00CC5818 /* FactlyWidget.swift */,
+				F51FDAC8270EF69F00CC5818 /* Assets.xcassets */,
+				F51FDACA270EF69F00CC5818 /* Info.plist */,
+			);
+			path = FactlyWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,10 +264,12 @@
 				5265BE621E339C580007CDCD /* Frameworks */,
 				5265BE631E339C580007CDCD /* Resources */,
 				EE23361AD8411C25ABAE179D /* [CP] Embed Pods Frameworks */,
+				F51FDACE270EF69F00CC5818 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F51FDACC270EF69F00CC5818 /* PBXTargetDependency */,
 			);
 			name = Factly;
 			productName = Factly;
@@ -227,19 +294,36 @@
 			productReference = 527575A0212055D3001336B3 /* FactlyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		F51FDABF270EF69B00CC5818 /* FactlyWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F51FDAD1270EF69F00CC5818 /* Build configuration list for PBXNativeTarget "FactlyWidgetExtension" */;
+			buildPhases = (
+				F51FDABC270EF69B00CC5818 /* Sources */,
+				F51FDABD270EF69B00CC5818 /* Frameworks */,
+				F51FDABE270EF69B00CC5818 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FactlyWidgetExtension;
+			productName = FactlyWidgetExtension;
+			productReference = F51FDAC0270EF69B00CC5818 /* FactlyWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		5265BE5D1E339C570007CDCD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Joey Tawadrous";
 				TargetAttributes = {
 					5265BE641E339C580007CDCD = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = P5Z7RL76WF;
+						DevelopmentTeam = SUAWT97CSE;
 						ProvisioningStyle = Automatic;
 					};
 					5275759F212055D3001336B3 = {
@@ -248,6 +332,11 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 5265BE641E339C580007CDCD;
 					};
+					F51FDABF270EF69B00CC5818 = {
+						CreatedOnToolsVersion = 12.5.1;
+						DevelopmentTeam = SUAWT97CSE;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 5265BE601E339C570007CDCD /* Build configuration list for PBXProject "Factly" */;
@@ -255,6 +344,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -265,6 +355,7 @@
 			targets = (
 				5265BE641E339C580007CDCD /* Factly */,
 				5275759F212055D3001336B3 /* FactlyUITests */,
+				F51FDABF270EF69B00CC5818 /* FactlyWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -288,6 +379,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F51FDABE270EF69B00CC5818 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F51FDAC9270EF69F00CC5818 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F561E4A1271427A20016D021 /* SharedFunctions.swift in Sources */,
 				52C7035A2144848600AC839F /* Settings.swift in Sources */,
 				5265BE811E33AEA30007CDCD /* Extensions.swift in Sources */,
 				52C7035C214484F200AC839F /* CustomClasses.swift in Sources */,
@@ -356,6 +456,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F51FDABC270EF69B00CC5818 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F561E4A2271427A20016D021 /* SharedFunctions.swift in Sources */,
+				F51FDAC7270EF69B00CC5818 /* FactlyWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -363,6 +472,11 @@
 			isa = PBXTargetDependency;
 			target = 5265BE641E339C580007CDCD /* Factly */;
 			targetProxy = 527575A5212055D4001336B3 /* PBXContainerItemProxy */;
+		};
+		F51FDACC270EF69F00CC5818 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F51FDABF270EF69B00CC5818 /* FactlyWidgetExtension */;
+			targetProxy = F51FDACB270EF69F00CC5818 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -486,6 +600,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81CE0C0712941C3CBF54BD72 /* Pods-Factly.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_BOOL_CONVERSION = NO;
 				CLANG_WARN_CONSTANT_CONVERSION = NO;
@@ -496,9 +611,10 @@
 				CLANG_WARN_INT_CONVERSION = NO;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
 				CLANG_WARN_UNREACHABLE_CODE = NO;
+				CODE_SIGN_ENTITLEMENTS = Factly/Factly.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = P5Z7RL76WF;
+				DEVELOPMENT_TEAM = SUAWT97CSE;
 				GCC_ENABLE_BUILTIN_FUNCTIONS = NO;
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
@@ -521,7 +637,7 @@
 				INFOPLIST_FILE = Factly/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.joeyt.factly;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hirerussians.factly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -533,6 +649,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B0AC00D0CAFEFF75CAB3F87B /* Pods-Factly.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_BOOL_CONVERSION = NO;
 				CLANG_WARN_CONSTANT_CONVERSION = NO;
@@ -543,8 +660,9 @@
 				CLANG_WARN_INT_CONVERSION = NO;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
 				CLANG_WARN_UNREACHABLE_CODE = NO;
+				CODE_SIGN_ENTITLEMENTS = Factly/Factly.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = P5Z7RL76WF;
+				DEVELOPMENT_TEAM = SUAWT97CSE;
 				GCC_ENABLE_BUILTIN_FUNCTIONS = NO;
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
@@ -567,7 +685,7 @@
 				INFOPLIST_FILE = Factly/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.joeyt.factly;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hirerussians.factly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_VERSION = 4.0;
@@ -637,6 +755,78 @@
 			};
 			name = Release;
 		};
+		F51FDACF270EF69F00CC5818 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = FactlyWidgetExtensionDebug.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = SUAWT97CSE;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = FactlyWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hirerussians.factly.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F51FDAD0270EF69F00CC5818 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = FactlyWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SUAWT97CSE;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = FactlyWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hirerussians.factly.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -663,6 +853,15 @@
 			buildConfigurations = (
 				527575A7212055D4001336B3 /* Debug */,
 				527575A8212055D4001336B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F51FDAD1270EF69F00CC5818 /* Build configuration list for PBXNativeTarget "FactlyWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F51FDACF270EF69F00CC5818 /* Debug */,
+				F51FDAD0270EF69F00CC5818 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

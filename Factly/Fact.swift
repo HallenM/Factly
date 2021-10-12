@@ -50,13 +50,16 @@ class Fact: UIViewController {
 		self.view.bringSubview(toFront: twitterButton!)
 		self.view.bringSubview(toFront: shareButton!)
 		
-		if UserDefaults.standard.string(forKey: Constants.Defaults.LATEST_FACT_ANSWER) != nil {
-			updateFact()
-		}
-		
+//		if UserDefaults.standard.string(forKey: Constants.Defaults.LATEST_FACT_ANSWER) != nil {
+//			updateFact()
+//		}
+        if UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.Defaults.LATEST_FACT_ANSWER) != nil {
+            updateFact()
+        }
 		
 		// Add observer that will the fact label when a new one is pulled
-		UserDefaults.standard.addObserver(self, forKeyPath: Constants.Defaults.LATEST_FACT_ANSWER, options: NSKeyValueObservingOptions.new, context: nil)
+//		UserDefaults.standard.addObserver(self, forKeyPath: Constants.Defaults.LATEST_FACT_ANSWER, options: NSKeyValueObservingOptions.new, context: nil)
+        UserDefaults(suiteName: "group.com.hirerussians.factly")!.addObserver(self, forKeyPath: Constants.Defaults.LATEST_FACT_ANSWER, options: NSKeyValueObservingOptions.new, context: nil)
 	}
 	
 	override func viewWillLayoutSubviews() {
@@ -81,7 +84,8 @@ class Fact: UIViewController {
 	}
 	
 	deinit {
-		UserDefaults.standard.removeObserver(self, forKeyPath: Constants.Defaults.LATEST_FACT_ANSWER)
+//		UserDefaults.standard.removeObserver(self, forKeyPath: Constants.Defaults.LATEST_FACT_ANSWER)
+        UserDefaults(suiteName: "group.com.hirerussians.factly")!.removeObserver(self, forKeyPath: Constants.Defaults.LATEST_FACT_ANSWER)
 	}
 
 	
@@ -115,9 +119,12 @@ class Fact: UIViewController {
 	/////////////////////////////////////////// */
 	func updateFact() {
 		// Get data
-		let question = UserDefaults.standard.string(forKey: Constants.Defaults.LATEST_FACT_QUESTION)! as String
-		let answer = UserDefaults.standard.string(forKey: Constants.Defaults.LATEST_FACT_ANSWER)! as String
-		
+//		let question = UserDefaults.standard.string(forKey: Constants.Defaults.LATEST_FACT_QUESTION)! as String
+//		let answer = UserDefaults.standard.string(forKey: Constants.Defaults.LATEST_FACT_ANSWER)! as String
+        let question = UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.Defaults.LATEST_FACT_QUESTION)! as String
+        let answer = UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.Defaults.LATEST_FACT_ANSWER)! as String
+        
+        
 		// Decode string
 		self.decodedString = (question + "\n\nAnswer: " + answer).decode
 		questionAndAnswerLabel?.text = self.decodedString
