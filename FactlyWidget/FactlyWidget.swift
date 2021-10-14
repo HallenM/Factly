@@ -17,15 +17,14 @@ struct Provider: TimelineProvider {
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         var _: Bool = true
         let factFromServer: String = UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: "lastFactQuestion") ?? "–snapshot"
-        print("new fact: \(factFromServer)")
         
         let entry: SimpleEntry
         let date = Date()
         
         if context.isPreview {//&& hasFetchedFact{
-            entry = SimpleEntry(date: date, fact: "Some interesting facts", image: "canada")
-        } else {
             entry = SimpleEntry(date: date, fact: factFromServer, image: "canada")
+        } else {
+            entry = SimpleEntry(date: date, fact: "Some interesting facts", image: "canada")
         }
         completion(entry)
     }
@@ -33,29 +32,37 @@ struct Provider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
 
-        
         let currentDate = Date()
-        print("Curr Date: \(currentDate)")
         
         // Create a date that's 5 minutes in the future.
         let entryDate = Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!
-        print("Next Date: \(entryDate)")
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy hh:mm:ss"
+        let entryDateString = formatter.string(from: entryDate)
+        
         // Create a timeline entry for "now."
-        let fact = UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: "lastFactQuestion") ?? "Cannot load the new fact, sorry :("
-        
-        // Get & set random picture bg
-        let pictures: [String] = ["australia", "canada", "fire", "forest", "iceland", "italy", "mountain", "mountains", "night", "night_house", "snow", "switzerland"]
-        let randomPic = pictures[Int(arc4random_uniform(UInt32(pictures.count)))]
-        
-        let entry = SimpleEntry(date: currentDate, fact: fact, image: randomPic)
-        entries.append(entry)
+        SharedFunctions.sheduledPullFact { result in
+            if result {
+                UserDefaults(suiteName: "group.com.hirerussians.factly")!.set(entryDateString, forKey: Constants.LocalNotifications.SHEDULED_FACT_DATE)
+                
+                let fact = UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.Defaults.SHEDULED_FACT_QUESTION) ?? "Cannot load the new fact, sorry :("
+                
+                // Get & set random picture bg
+                let pictures: [String] = ["australia", "canada", "fire", "forest", "iceland", "italy", "mountain", "mountains", "night", "night_house", "snow", "switzerland"]
+                let randomPic = pictures[Int(arc4random_uniform(UInt32(pictures.count)))]
+                
+                let entry = SimpleEntry(date: currentDate, fact: fact, image: randomPic)
+                entries.append(entry)
 
-        // Create the timeline with the entry and a reload policy with the date
-        // for the next update.
-        let timeline = Timeline(entries: entries, policy: .after(entryDate))
-        
-        // Call the completion to pass the timeline to WidgetKit.
-        completion(timeline)
+                // Create the timeline with the entry and a reload policy with the date
+                // for the next update.
+                let timeline = Timeline(entries: entries, policy: .after(entryDate))
+                
+                // Call the completion to pass the timeline to WidgetKit.
+                completion(timeline)
+            }
+        }
     }
 }
 

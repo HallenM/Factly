@@ -14,6 +14,8 @@ class Constants {
 	struct Defaults {
 		static let LATEST_FACT_QUESTION = "lastFactQuestion"
 		static let LATEST_FACT_ANSWER = "lastFactAnswer"
+        static let SHEDULED_FACT_QUESTION = "sheduledFactQuestion"
+        static let SHEDULED_FACT_ANSWER = "sheduledFactAnswer"
 	}
 	
 	
@@ -24,7 +26,10 @@ class Constants {
 	
 	struct LocalNotifications {
 		static let ACTION_CATEGORY_IDENTIFIER = "ActionCategory"
+        
 		static let LAST_FACT_DATE = "lastFactDate"
+        static let SHEDULED_FACT_DATE = "sheduledFactDate"
+        
 		static let VIEW_FACT_ACTION_IDENTIFIER = "ViewFactAction"
 		static let VIEW_FACT_ACTION_TITLE = "View Fact"
 	}

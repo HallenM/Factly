@@ -15,8 +15,6 @@ class Fact: UIViewController {
 	
 	var grayBGView: UIViewController!
 	var decodedString: String!
-
-	
 	
 	/* MARK: Initialising
 	/////////////////////////////////////////// */
@@ -50,17 +48,60 @@ class Fact: UIViewController {
 		self.view.bringSubview(toFront: twitterButton!)
 		self.view.bringSubview(toFront: shareButton!)
 		
-//		if UserDefaults.standard.string(forKey: Constants.Defaults.LATEST_FACT_ANSWER) != nil {
-//			updateFact()
-//		}
-        if UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.Defaults.LATEST_FACT_ANSWER) != nil {
-            updateFact()
-        }
+		if UserDefaults.standard.string(forKey: Constants.Defaults.LATEST_FACT_ANSWER) != nil &&
+            UserDefaults.standard.string(forKey: Constants.Defaults.LATEST_FACT_QUESTION) != nil {
+			updateFact()
+		}
 		
 		// Add observer that will the fact label when a new one is pulled
 //		UserDefaults.standard.addObserver(self, forKeyPath: Constants.Defaults.LATEST_FACT_ANSWER, options: NSKeyValueObservingOptions.new, context: nil)
         UserDefaults(suiteName: "group.com.hirerussians.factly")!.addObserver(self, forKeyPath: Constants.Defaults.LATEST_FACT_ANSWER, options: NSKeyValueObservingOptions.new, context: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleObserver),
+                                               name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                               object: nil)
 	}
+    
+    @objc func handleObserver() {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy hh:mm:ss"
+        let todaysDate = formatter.string(from: date)
+    
+        if UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.LocalNotifications.LAST_FACT_DATE) == nil {
+            SharedFunctions.lastPullFact { result in
+                if result {
+                    UserDefaults(suiteName: "group.com.hirerussians.factly")!.set(todaysDate, forKey: Constants.LocalNotifications.LAST_FACT_DATE)
+                    self.updateFact(isFirstLaunch: true)
+                }
+            }
+        } else {
+            updateFact()
+//            let lastFactDate = UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.LocalNotifications.LAST_FACT_DATE)
+//
+//            // For testing
+//            let components = Set<Calendar.Component>([.second, .minute, .hour])
+//            let differenceOfDate = Calendar.current.dateComponents(components, from: formatter.date(from: lastFactDate!)!, to: formatter.date(from: todaysDate)!)
+//
+//            guard let hours = differenceOfDate.hour,
+//                  let minutes = differenceOfDate.minute,
+//                  let seconds = differenceOfDate.second else { return }
+//
+//            // Check if 24 hours have passed since the last fact was pulled
+//            if hours == 0 && minutes >= 5 {
+//
+//                print("there are some data in UserDefaults and lastFactDate < todaysDate")
+//                SharedFunctions.lastPullFact { result in
+//                    if result {
+//                        self.updateFact()
+//                    }
+//                }
+//
+//                UserDefaults(suiteName: "group.com.hirerussians.factly")!.set(todaysDate, forKey: Constants.LocalNotifications.LAST_FACT_DATE)
+//            }
+        }
+    }
 	
 	override func viewWillLayoutSubviews() {
 		// Get & set random picture bg
@@ -93,8 +134,11 @@ class Fact: UIViewController {
 	/* MARK: Button Actions
 	/////////////////////////////////////////// */
 	@IBAction func refreshFactButtonPressed(_ sender: AnyObject) {
-		AppDelegate.pullFact()
-		updateFact()
+//        SharedFunctions.lastPullFact { result in
+//            if result {
+//                self.updateFact()
+//            }
+//        }
 	}
 	
 	@IBAction func menuButtonPressed(_ sender: AnyObject) {
@@ -117,13 +161,34 @@ class Fact: UIViewController {
 	
 	/* MARK: Core Functionality
 	/////////////////////////////////////////// */
-	func updateFact() {
+    func updateFact(isFirstLaunch: Bool = false) {
 		// Get data
-//		let question = UserDefaults.standard.string(forKey: Constants.Defaults.LATEST_FACT_QUESTION)! as String
-//		let answer = UserDefaults.standard.string(forKey: Constants.Defaults.LATEST_FACT_ANSWER)! as String
-        let question = UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.Defaults.LATEST_FACT_QUESTION)! as String
-        let answer = UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.Defaults.LATEST_FACT_ANSWER)! as String
+        let currentDate = Date()
+        var sheduledDateString: String?
         
+        var question = ""
+        var answer = ""
+        
+        if isFirstLaunch {
+            question = UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.Defaults.LATEST_FACT_QUESTION)! as String
+            answer = UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.Defaults.LATEST_FACT_ANSWER)! as String
+        } else {
+            sheduledDateString = UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.LocalNotifications.SHEDULED_FACT_DATE)
+            
+            guard let sheduledDateString = sheduledDateString else { return }
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd.MM.yyyy hh:mm:ss"
+            let sheduledDate = formatter.date(from: sheduledDateString)!
+            
+            if currentDate >= sheduledDate {
+                question = UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.Defaults.SHEDULED_FACT_QUESTION)! as String
+                answer = UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.Defaults.SHEDULED_FACT_ANSWER)! as String
+            } else {
+                question = UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.Defaults.LATEST_FACT_QUESTION)! as String
+                answer = UserDefaults(suiteName: "group.com.hirerussians.factly")!.string(forKey: Constants.Defaults.LATEST_FACT_ANSWER)! as String
+            }
+        }
         
 		// Decode string
 		self.decodedString = (question + "\n\nAnswer: " + answer).decode
